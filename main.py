@@ -1,4 +1,8 @@
-def main():
+def get_keyword() -> str:
+    return input('Keyword: ')
+
+
+def main() -> None:
     pass
 
 
