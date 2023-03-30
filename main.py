@@ -17,7 +17,10 @@ def write_data_to_file(file_path: str, data: list[str]) -> None:
 
 
 def main() -> None:
-    pass
+    keyword = get_keyword()
+    data = get_data_from_file('src/data.txt')
+    filtered_data = filter_data(data, keyword)
+    write_data_to_file('src/filtered.txt', filtered_data)
 
 
 if __name__ == '__main__':
