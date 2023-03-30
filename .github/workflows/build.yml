@@ -1,0 +1,28 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python v3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Test with pytest
+        env:
+          SDL_VIDEODRIVER: "dummy"
+          SDL_AUDIODRIVER: "disk"
+        run: pytest --html=report/pytest/report.html .
+      - name: Lint with flake8
+        run: flake8 --format=html --htmldir=report/flake8 .
