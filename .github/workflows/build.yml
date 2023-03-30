@@ -23,6 +23,6 @@ jobs:
         env:
           SDL_VIDEODRIVER: "dummy"
           SDL_AUDIODRIVER: "disk"
-        run: pytest --html=report/pytest/report.html .
+        run: pytest tests.py
       - name: Lint with flake8
-        run: flake8 --format=html --htmldir=report/flake8 .
+        run: flake8 .
