@@ -7,7 +7,7 @@ from . import main
 
 @pytest.fixture
 def data() -> list[str]:
-    return ['1111111111\n', 'sdflsBohdan554k dj']
+    return ['111111dj1111\n', 'sdflsBohdan554k dj']
 
 
 @pytest.fixture
@@ -27,3 +27,11 @@ def test_get_keyword(monkeypatch):
 def test_get_data_from_file(monkeypatch, input_file, data):
     monkeypatch.setattr('builtins.open', lambda x: input_file)
     assert main.get_data_from_file('') == data
+
+
+@pytest.mark.parametrize('keyword,expected', (
+        ('Bohdan554', ['sdflsBohdan554k dj']),
+        ('dj', ['111111dj1111\n', 'sdflsBohdan554k dj']),
+))
+def test_filter_data(keyword, expected, data):
+    assert main.filter_data(data, keyword) == expected
