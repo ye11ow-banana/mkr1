@@ -7,6 +7,10 @@ def get_data_from_file(file_path: str) -> list[str]:
         return file.readlines()
 
 
+def filter_data(data: list[str], keyword: str) -> list[str]:
+    return [_ for _ in data if keyword in _]
+
+
 def main() -> None:
     pass
 
